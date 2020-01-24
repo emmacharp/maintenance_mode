@@ -186,11 +186,12 @@ Class extension_maintenance_mode extends Extension
     public function __appendType($context)
     {
         // Find page types
-        $elements = $context['form']->getChildren();
+        $elements = $context['primary']->getChildren();
         $fieldset = $elements[0]->getChildren();
         $group = $fieldset[2]->getChildren();
         $div = $group[1]->getChildren();
-        $types = $div[2]->getChildren();
+        $label = $div[1]->getChildren();
+        $types = $label[2]->getChildren();
 
         // Search for existing maintenance type
         $flag = false;
@@ -207,7 +208,7 @@ Class extension_maintenance_mode extends Extension
         if ($flag === false) {
 
             $mode = new XMLElement('li', 'maintenance');
-            $div[2]->appendChild($mode);
+            $label[2]->appendChild($mode);
         }
     }
 
